@@ -1,174 +1,54 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>企业展厅多媒体内容设计工作流</title>
-  <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>“好房子”建设标准可视化导览</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="standby-screen" id="standbyScreen" aria-hidden="true">
-    <div class="standby-backdrop"></div>
-    <div class="standby-content">
-      <img class="standby-logo" src="./desilogo.jpg" alt="DESI logo">
-      <h2>企业展厅多媒体内容设计工作流</h2>
-      <p class="standby-text">
-        从内容策划、交互设计到开发交付，呈现 DESI 在商业空间与企业展厅中的数字内容整合方法。
-      </p>
-      <button class="standby-btn" id="wakeButton">点击进入</button>
-    </div>
-  </div>
-
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div>
-        <img class="brand-logo" src="./desilogo.jpg" alt="DESI logo">
-        <h1>企业展厅多媒体内容设计工作流</h1>
-        <p class="lead">
-          以 DESI 的空间叙事方法为基础，把内容策划、交互定义、界面结构、动效脚本与开发交付整合为可提案、可展示、可落地的系统方法。
-        </p>
-      </div>
-
-      <div class="stats-panel">
-        <div class="stat-card">
-          <span class="stat-label">核心阶段</span>
-          <strong class="stat-value">9</strong>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">标准交付物</span>
-          <strong class="stat-value">10</strong>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">推荐屏幕</span>
-          <strong class="stat-value">55"</strong>
-        </div>
-      </div>
-
-      <section class="brand-panel">
-        <p class="section-tag">品牌定位 / Brand Position</p>
-        <h3>Inviting & Affecting.</h3>
-        <p>
-          DESI 专注商业空间体验与展厅叙事，通过空间、内容与数字媒介的整合，构建简洁、克制且具记忆点的现场体验。
-        </p>
+  <header class="topbar">
+    <h1>中国住建部“好房子”建设标准 · 可交互讲解详情图</h1>
+    <p>信息图 + 报表 + 注释框 + 示意图｜用于展厅与多媒体设备宣传推广</p>
+  </header>
+  <main class="layout">
+    <aside class="col left">
+      <section class="card photo-card">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=80" alt="住宅示意图" />
+        <p class="caption">融合写实照片与图形叠层，突出“住有宜居”场景。</p>
       </section>
-
-      <nav class="stage-nav" id="stageNav" aria-label="工作流导航"></nav>
+      <section class="card" id="policyTimeline"></section>
+      <section class="card" id="sourcePanel"></section>
     </aside>
 
-    <main class="main-content">
-      <section class="hero-panel">
-        <div class="hero-copy">
-          <p class="section-tag">互动总览 / Interactive Overview</p>
-          <h2 id="stageTitle"></h2>
-          <p id="stageSummary" class="stage-summary"></p>
-        </div>
-        <div class="hero-actions">
-          <button class="action-btn home-btn" id="homeButton">返回首页</button>
-          <button class="action-btn is-active" data-view="workflow">工作流</button>
-          <button class="action-btn" data-view="deliverables">交付模板</button>
-          <button class="action-btn" data-view="deployment">落地实施</button>
-          <button class="action-btn" data-view="operator">运行指南</button>
-        </div>
+    <section class="col center">
+      <section class="card hero">
+        <h2>“好房子”四维目标</h2>
+        <p class="muted">依据“安全、舒适、绿色、智慧”构建多层指标体系，配套“好标准、好设计、好材料、好建造、好运维”执行链条。</p>
+        <div id="coreBadges" class="core-badges"></div>
       </section>
 
-      <section class="content-grid" id="contentGrid"></section>
-    </main>
-  </div>
-
-  <template id="workflowTemplate">
-    <section class="panel panel-large">
-      <p class="section-tag">阶段详情 / Step Details</p>
-      <div id="detailCards" class="detail-cards"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">设计输出 / Design Output</p>
-      <div id="outputList" class="bullet-list"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">交互建议 / Interactive Advice</p>
-      <div id="interactionHints" class="bullet-list"></div>
-    </section>
-  </template>
-
-  <template id="overviewTemplate">
-    <section class="panel panel-large overview-panel">
-      <div class="overview-header">
-        <div>
-          <p class="section-tag">展示总览 / Exhibition Overview</p>
-          <h3>从方法到落地的 9 段式内容系统</h3>
+      <section class="card">
+        <div class="section-head">
+          <h3>指标看板（交互切换）</h3>
+          <div id="tabBar" class="tab-bar"></div>
         </div>
-        <div class="overview-meta">
-          <span id="rotationLabel">自动轮播中</span>
-          <strong id="currentStageIndex">01</strong>
-        </div>
-      </div>
-      <div id="overviewGrid" class="overview-grid"></div>
+        <div id="dimensionView" class="dimension-view"></div>
+      </section>
+
+      <section class="card">
+        <h3>项目实施流程图（触摸点选）</h3>
+        <div id="flowMap" class="flow-map"></div>
+        <article id="flowDetail" class="annot-box"></article>
+      </section>
     </section>
 
-    <section class="panel">
-      <p class="section-tag">屏幕逻辑 / Screen Logic</p>
-      <div id="overviewSignals" class="bullet-list"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">展示价值 / Presentation Value</p>
-      <div id="overviewValues" class="bullet-list"></div>
-    </section>
-  </template>
-
-  <template id="deliverablesTemplate">
-    <section class="panel panel-large">
-      <p class="section-tag">标准交付包 / Standard Package</p>
-      <div id="deliverableCards" class="deliverable-grid"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">团队分工 / Team Roles</p>
-      <div id="roleList" class="bullet-list"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">项目节奏 / Project Rhythm</p>
-      <div id="scheduleList" class="bullet-list"></div>
-    </section>
-  </template>
-
-  <template id="deploymentTemplate">
-    <section class="panel panel-large">
-      <p class="section-tag">推荐设备 / Recommended Equipment</p>
-      <div id="deviceCards" class="device-grid"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">现场流程 / On-site Flow</p>
-      <div id="deploymentSteps" class="bullet-list"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">实施要点 / Implementation Notes</p>
-      <div id="implementationNotes" class="bullet-list"></div>
-    </section>
-  </template>
-
-  <template id="operatorTemplate">
-    <section class="panel panel-large">
-      <p class="section-tag">非技术人员操作 / For Non-technical Operators</p>
-      <div id="operatorCards" class="deliverable-grid"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">一句话说明 / Quick Sentence</p>
-      <div id="operatorQuickTip" class="bullet-list"></div>
-    </section>
-
-    <section class="panel">
-      <p class="section-tag">交付检查清单 / Handover Checklist</p>
-      <div id="operatorChecklist" class="bullet-list"></div>
-    </section>
-  </template>
-
+    <aside class="col right">
+      <section class="card" id="reportPanel"></section>
+      <section class="card" id="scenarioPanel"></section>
+      <section class="card" id="devicePanel"></section>
+    </aside>
+  </main>
   <script src="./app.js"></script>
 </body>
 </html>
